@@ -18,8 +18,8 @@ int currentState = MENU_STATE;
 Font titleFont;
 Font titleF;
 Font tFont;
-
-
+Mouse ME = new Mouse(250,700,50,50);
+ObjectManager OManager = new ObjectManager(ME);
 @Override
 public void paintComponent(Graphics g) {
 	if(currentState == MENU_STATE) {
@@ -56,20 +56,42 @@ void startGame() {
 }
 
 @Override
-public void keyPressed(KeyEvent arg0) {
+public void keyPressed(KeyEvent a) {
 	// TODO Auto-generated method stub
-	if(arg0.getKeyCode()== KeyEvent.VK_ENTER) {
+	if(a.getKeyCode()== KeyEvent.VK_ENTER) {
 		currentState++;
 		if(currentState > END_STATE) {
 			currentState = MENU_STATE;
 		}
 	}
+	if(a.getKeyCode()== KeyEvent.VK_UP){
+		ME.up = true;
+	}
+	if(a.getKeyCode() == KeyEvent.VK_DOWN){
+		ME.down = true;
+	}
+	if(a.getKeyCode() == KeyEvent.VK_RIGHT){
+		ME.right = true;
+	}
+	if(a.getKeyCode ()== KeyEvent.VK_LEFT){
+		ME.left = true;
+	}
 }
 
 @Override
-public void keyReleased(KeyEvent arg0) {
-	// TODO Auto-generated method stub
-	System.out.println("Message to");
+public void keyReleased(KeyEvent a) {
+	if(a.getKeyCode() == KeyEvent.VK_UP){
+		ME.up = false;
+	}
+	if(a.getKeyCode()== KeyEvent.VK_DOWN){
+		ME.down = false;
+	}
+	if (a.getKeyCode() == KeyEvent.VK_RIGHT){
+		ME.right = false;
+	}
+	if (a.getKeyCode() == KeyEvent.VK_LEFT) {
+		ME.left = false;
+	}
 }
 
 @Override
@@ -81,7 +103,7 @@ void updateMenuState() {
 	
 }
 void updateGameState() {
-	
+	OManager.update();
 }
 void updateEndState() {
 	
@@ -99,6 +121,7 @@ void drawMenuState(Graphics g) {
 void drawGameState(Graphics g) {
 	g.setColor(Color.GREEN);
 	g.fillRect(0, 0, Game.WIDTH, Game.HEIGHT);
+	OManager.draw(g);
 }
 void drawEndState (Graphics g) {
 	g.setColor(Color.BLUE);
