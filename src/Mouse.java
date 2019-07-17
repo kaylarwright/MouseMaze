@@ -12,6 +12,7 @@ boolean left = false;
 		speed = 10;
 	}
 	void update(){
+		super.update();
 	if(up == true){
 		y -= speed;
 	}
@@ -26,7 +27,6 @@ boolean left = false;
 	}
 	}
 	void draw(Graphics g){
-		g.setColor(Color.GRAY);
-		g.fillRect(x, y, width, height);
+g.drawImage(GamePanel.MouseImg, x, y, width, height, null);
 	}
 }

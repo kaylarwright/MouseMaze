@@ -43,4 +43,11 @@ void purgeObject() {
 		}
 	}
 }
+void checkCollision() {
+	for(Cat c : tac) {
+		if(OUSE.collisionBox.intersects(c.collisionBox)) {
+			OUSE.isAlive = false;
+		}
+	}
+}
 }
